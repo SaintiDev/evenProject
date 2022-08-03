@@ -2,6 +2,7 @@
 
 use App\Controllers\HomeController;
 use App\Controllers\UserController;
+use App\Models\EventModel;
 
 // Autoloader
 spl_autoload_register(function ($className) {
@@ -30,3 +31,6 @@ list($controllerName, $method) = $routes[$page];
 // Instanciation dynamique du contrôleur et de la méthode
 $controller = new $controllerName();
 $controller->$method();
+
+
+require_once './App/Views/layout.phtml';
