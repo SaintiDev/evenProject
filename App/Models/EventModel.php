@@ -19,7 +19,7 @@ class EventModel
     public function getOne(int $id): array
     {
         $connection = new Connection();
-        $query = $connection->getPdo()->prepare('SELECT * FROM posts WHERE id = :id');
+        $query = $connection->getPdo()->prepare('SELECT * FROM events WHERE id = :id');
         $query->execute(['id' => $id]);
         $post = $query->fetch();
         

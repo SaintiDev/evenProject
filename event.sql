@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : mer. 03 août 2022 à 08:05
+-- Généré le : mer. 03 août 2022 à 12:43
 -- Version du serveur : 5.7.36
--- Version de PHP : 7.4.26
+-- Version de PHP : 8.1.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `event`
+-- Base de données : `gestion_event`
 --
 
 -- --------------------------------------------------------
@@ -32,7 +32,17 @@ CREATE TABLE IF NOT EXISTS `categories` (
   `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `categories`
+--
+
+INSERT INTO `categories` (`id`, `name`) VALUES
+(1, 'Voyage'),
+(2, 'Travail'),
+(3, 'Jeux'),
+(4, 'expériences');
 
 -- --------------------------------------------------------
 
@@ -68,7 +78,17 @@ CREATE TABLE IF NOT EXISTS `events` (
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
   KEY `category_id` (`category_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `events`
+--
+
+INSERT INTO `events` (`id`, `title`, `description`, `start_at`, `address`, `user_id`, `category_id`) VALUES
+(1, 'Vacances', 'Sous un soleil de plomb nous irons dans la Garrigue ', '17:15:59', 'Dans mon congélo', 1, 1),
+(2, 'Les aventures de Zorro', 'Zorro est arrivé ! Sans se presser ! Le grand Zorro !', '12:05:15', 'Sur son cheval', 3, 1),
+(3, 'Test de jeux rétro', 'Il test des jeux pourris et se venge la nuit ! Son obsession profonde : c\'est d\'emmerder le monde !', '18:39:29', 'Dans son salon', 2, 3),
+(4, 'Buvons', 'Pleine d\'oligo-excréments !', '16:39:29', 'Paris', 4, 4);
 
 -- --------------------------------------------------------
 
@@ -82,9 +102,19 @@ CREATE TABLE IF NOT EXISTS `users` (
   `username` varchar(50) NOT NULL,
   `email` varchar(120) NOT NULL,
   `password` varchar(64) NOT NULL,
-  `created_at` date NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `users`
+--
+
+INSERT INTO `users` (`id`, `username`, `email`, `password`, `created_at`) VALUES
+(1, 'Canard', 'canard@canard.fr', 'canard', '2022-08-03 00:00:00'),
+(2, 'Joueur du Grenier', 'jdg@jdg.fr', 'jdg', '2022-08-03 14:31:17'),
+(3, 'Zorro', 'zorro@zorro.fr', 'zorro', '2022-08-03 14:25:03'),
+(4, 'Seinoise', 'seinoise@seinoise.fr', 'seinoise', '2022-08-03 14:31:17');
 
 --
 -- Contraintes pour les tables déchargées

@@ -31,6 +31,3 @@ list($controllerName, $method) = $routes[$page];
 // Instanciation dynamique du contrôleur et de la méthode
 $controller = new $controllerName();
 $controller->$method();
-
-
-require_once './App/Views/layout.phtml';
